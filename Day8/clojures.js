@@ -12,5 +12,15 @@ function multiplyBy(multiplier) {
   console.log(triple(10)); // Output: 30
   console.log(triple(20)); // Output: 60
 
-
-  
+//___________________________
+  function counter() {
+    let count = 0;
+    return function increment() {
+      count++;
+      return count;
+    }
+  }
+  const myCounter = counter();
+  console.log(myCounter()); // Output: 1
+  console.log(myCounter()); // Output: 2
+  console.log(myCounter()); // Output: 3

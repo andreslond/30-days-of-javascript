@@ -9,9 +9,8 @@ export function createTaskPlanner() {
       },
       removeTask(value) {
         console.log('remove: ', value);
-        const filteredTaskList = taskList.filter((task) => {
-          task.id === value || task.name === value;
-        });
+        const filteredTaskList = taskList.filter((task) =>
+          task.id !== value && task.name !== value);
         console.log(filteredTaskList);
         taskList = filteredTaskList;
       },
@@ -21,7 +20,7 @@ export function createTaskPlanner() {
       getPendingTasks() {
         return taskList.filter((task) => !task.completed);
       },
-      getCompletedtasks() {
+      getCompletedTasks() {
         return taskList.filter((task) => task.completed);
       },
       markTaskAsCompleted(value) {
@@ -32,7 +31,6 @@ export function createTaskPlanner() {
         console.log(searchedTask);
         if (searchedTask) {
           searchedTask.completed = true;
-          console.log('after update: ', searchedTask);
         }
       },
       getSortedTasksByPriority() {
@@ -44,21 +42,24 @@ export function createTaskPlanner() {
       },
       filterTasksByTag(tag) {
         console.log('filterTasksByTag: ', tag);
-        return taskList.filter((task) =>
-          task.tags.filter((taskTag) =>
-            taskTag == tag));
+        const filteredList = taskList.filter((task) => {
+          const hasTag = task.tags.some((taskTag) => taskTag === tag);
+          if (hasTag) {
+            return task;
+          }
+        });
+        return filteredList;
       },
       updateTask(taskId, updates) {
         console.log('updateTask: ', taskId);
         console.log('updates: ', updates);
         const searchedTask = taskList.find((task) => task.id === taskId);
-  
         console.log(searchedTask);
         if (searchedTask) {
-          searchedTask.name = updates.name;
-          searchedTask.priority = updates.priority;
-          searchedTask.tags = updates.tags;
   
+          for (const property in updates) {
+            searchedTask[property] = updates[property];
+          }
           console.log(taskList);
         }
       }
