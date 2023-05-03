@@ -35,7 +35,9 @@ const people = [
 
 //Array.prototype.findIndex
 //Return the index of the first element that match a condition.
+//If there is not match, retun an -1 value
 
 const numbers2 = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 const index = numbers2.findIndex(num => num > 5);
 console.log(index); // Output: 5
+
