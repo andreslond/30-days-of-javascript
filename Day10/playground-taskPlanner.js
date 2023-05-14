@@ -3,7 +3,7 @@ export function createTaskPlanner() {
     let taskList = [];
     return {
       addTask(task) {
-        console.log('add: ', task);
+        console.log('add: ', tsk);
         task.completed = false;
         taskList.push(task);
       },
