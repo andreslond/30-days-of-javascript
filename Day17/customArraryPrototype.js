@@ -1,14 +1,15 @@
 export function arrayModified() {
 
-    Array.prototype.myFilter = function(func) {
-      // return this.filter((element) => {
-      //   console.log(element);
-      //   return func(element);
-      // });
+    Array.prototype.myFilter = function (func) {
       //return this.filter(func);
-      return this.forEach((element) => {
-  
+      let newArray = [];
+      this.forEach((element) => {
+        if (func(element)) {
+          console.log(func(element));
+          newArray.push(element);
+        }
       });
+      return newArray;
     };
   
     const array = [1, 2, 3, 4, 5, 6];
