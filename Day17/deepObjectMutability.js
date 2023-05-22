@@ -69,12 +69,39 @@ for (const key in pokemon) {
   console.log('value:', value);
 }
 
-
 //Here will be define level as read-only.
 Object.defineProperty(pokemon, 'level', {
   enumerable: false,
   writable: false,
 });
 
-pokemon.level = 5;
-console.log("pokemon.level:", pokemon.level)
+//The following line will throw an error by the configuration of the property.
+//TypeError: Cannot assign to read only property 'level' of object '#<Object>'
+/* pokemon.level = 5; */
+console.log('pokemon.level:', pokemon.level);
+
+//Here will be changes the property configurable of name property.
+//This will block the object and its descriptor properties cannot be changed again.
+Object.defineProperty(pokemon, 'name', {
+  configurable: false,
+});
+
+//The following line will throw an error
+//TypeError: Cannot redefine property: name
+/* Object.defineProperty(pokemon, 'name', {
+  configurable: true,
+}); */
+
+/* 5. What key properties changes the method Object.freeze() ?
+    This method will set false on the properties 'writable' and 'configurable' of all first level object keys.
+ */
+
+Object.freeze(pokemon);
+
+const pokemonMetadataPropertyDesc = Object.getOwnPropertyDescriptor(pokemon, 'metadata');
+console.log("\n pokemonMetadataPropertyDesc:", pokemonMetadataPropertyDesc)
+
+//The internal properties are marked as true. Object.freeze() only affects the first level of the object.
+const pokemonFirstReleasePropertyDesc = Object.getOwnPropertyDescriptor(pokemon.metadata, 'firstRelease');
+console.log("\n pokemonFirstReleasePropertyDesc:", pokemonFirstReleasePropertyDesc)
+
