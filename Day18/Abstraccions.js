@@ -35,3 +35,7 @@ class Book extends Product {
 }
 
 
+const product1 = new Product('Product1', 100, 'Product desc');
+product1.show()
+const book1 = new Book('Book1', 100, 'Description', 'Author', 'Editorial');
+book1.show();

@@ -44,5 +44,6 @@ hippo.getInfo()
 console.log("\n: ~ hippo:", hippo)
 
 const dog = new Dog("fido", 4, "pastor aleman", true);
+console.log("\n: ~ dog.getInfo():", dog.getInfo())
 dog.bark()
 console.log("\n: ~ dog:", dog)
