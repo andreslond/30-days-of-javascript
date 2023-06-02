@@ -2,17 +2,18 @@ import { Pay } from "./Pay.class.js";
 
 export class Card extends Pay {
 
-  constructor(cardNum) {
+  constructor(cardNumber) {
     super();
-    this.cardNum = cardNum;
+    this.cardNumber = cardNumber;
   }
 
-  makePay() {
-    if (this.cardNum.length < 16) {
+  makePay(amount) {
+    if (this.cardNumber.length < 16) {
       throw new Error('Se require minimo 16 digítos');
     }
     return {
-      lastCardNumbers: this.cardNum.substring(12)
+      ...super.makePay(amount),
+      lastCardNumbers: this.cardNumber.substring(12)
     }
   }
 }
