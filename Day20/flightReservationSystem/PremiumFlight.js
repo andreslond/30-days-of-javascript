@@ -8,7 +8,7 @@ export class PremiumFlight extends Flight {
   }
 
   sellTicket(passenger) {
-    this.specialPrice = this.price + this.specialService;
-    return super.sellTicket(passenger, this.specialPrice);    
+    let specialPrice = this.price + this.specialService;
+    return super.sellTicket(passenger, specialPrice);
   }
 }

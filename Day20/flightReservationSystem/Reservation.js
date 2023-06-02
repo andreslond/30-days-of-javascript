@@ -9,7 +9,6 @@ export class Reservation {
         origin: this.flight.origin,
         destination: this.flight.destination,
         date: this.flight.date,
-        price: this.price,
         reservedBy: `${this.passenger.name} ${this.passenger.lastName}`
       }
     }

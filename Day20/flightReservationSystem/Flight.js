@@ -21,16 +21,15 @@ export class Flight {
       });
 
       this.capacity -= 1;
-      
-      const flightCopy = structuredClone(this);
-      flightCopy.price = specialPrice ? specialPrice : flightCopy.price;
 
-      passenger.flights.push({
-        origin: flightCopy.origin,
-        destination: flightCopy.destination,
-        date: flightCopy.date,
-        price: specialPrice ? specialPrice : flightCopy.price
-      });
+      const flightCopy = {
+        origin: this.origin,
+        destination: this.destination,
+        date: this.date,
+        price: specialPrice? specialPrice: this.price
+      }
+
+      passenger.flights.push(flightCopy);
 
       return new Reservation(flightCopy, passenger);
     }
