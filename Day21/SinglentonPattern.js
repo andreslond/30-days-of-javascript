@@ -50,5 +50,17 @@ console.log(instance3 === instance4); // True
 
 //Is important use it only in a match case to avoid the anty pattern.
 
-//Factory Pattern
-//
+/*
+Pros and cons
+Pros
+It makes sure that inly a single instance of the class is created
+We get a inslge access point to the instance that can be accessed globally
+
+Cons
+It is difficult to write unit test cases for singlenton classes. This is because the order of
+execution can change the value present in the global state, so the orden of execution is important.
+
+While writting unit tests, ther is a risk of another
+componente or a module might be changing the global stata value/instance. Is such scenarios, 
+it becomes diffucult to debug the error.
+*/

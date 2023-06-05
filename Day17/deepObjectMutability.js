@@ -95,13 +95,17 @@ Object.defineProperty(pokemon, 'name', {
 /* 5. What key properties changes the method Object.freeze() ?
     This method will set false on the properties 'writable' and 'configurable' of all first level object keys.
  */
-
+const pokemonMetadataPropertyDescBefore = Object.getOwnPropertyDescriptor(pokemon, 'metadata');
+console.log('\n pokemonMetadataPropertyDescBefore:', pokemonMetadataPropertyDescBefore);
+console.log('Freeze');
 Object.freeze(pokemon);
 
 const pokemonMetadataPropertyDesc = Object.getOwnPropertyDescriptor(pokemon, 'metadata');
-console.log("\n pokemonMetadataPropertyDesc:", pokemonMetadataPropertyDesc)
+console.log('\n pokemonMetadataPropertyDesc:', pokemonMetadataPropertyDesc);
 
 //The internal properties are marked as true. Object.freeze() only affects the first level of the object.
-const pokemonFirstReleasePropertyDesc = Object.getOwnPropertyDescriptor(pokemon.metadata, 'firstRelease');
-console.log("\n pokemonFirstReleasePropertyDesc:", pokemonFirstReleasePropertyDesc)
-
+const pokemonFirstReleasePropertyDesc = Object.getOwnPropertyDescriptor(
+  pokemon.metadata,
+  'firstRelease'
+);
+console.log('\n pokemonFirstReleasePropertyDesc:', pokemonFirstReleasePropertyDesc);
