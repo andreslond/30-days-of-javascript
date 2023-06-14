@@ -2,29 +2,24 @@ import { Task } from "./exercise";
 
 export class TaskManager {
    constructor() {
-      if (!TaskManager.instance) {
-         this.task = [];
-         Object.freeze(this);
-         return TaskManager.instalce = this;
-      }
-      return TaskManager.instance;
+      this.task = [];
    }
 
    static getInstance() {
+      // if (!this.task) {
+      //    let aux = new TaskManager();
+      //    Object.freeze(aux);
+      //    return aux;
+      // }
+      // return this;
       if (!TaskManager.instance) {
-         this.task = [];
-         Object.freeze(this);
-         return TaskManager.instance = this;
+         TaskManager.instance = new TaskManager();         
       }
       return TaskManager.instance;
    }
 
    addTask(task) {
-      let taskAux = task;
-      if (task.deadline) {
-         taskAux = task.task;
-      }
-      if (taskAux instanceof Task) {
+      if (task instanceof Task) {
          return this.task.push(task);
       }
       throw new Error('La tarea no tiene la estructura correcta');
@@ -35,6 +30,9 @@ export class TaskManager {
    }
 
    getTaskById(id) {
-      return this.task.filter(task => task.id === id);
+      let result = this.task.find(task => task.id === id);
+      if (!result)
+         return null;
+      return result;
    }
 }
