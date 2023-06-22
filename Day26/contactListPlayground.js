@@ -1,7 +1,8 @@
+//Impementationwhen hastable avoids collisions
 export class ContactList {
     constructor(size) {
       this.buckets = new Array(size);
-      this.length = this.buckets.length;
+      this.numBuckets = this.buckets.length;
     }
   
     hash(name) {
@@ -28,11 +29,19 @@ export class ContactList {
       if (!this.buckets[index]) {
         return null;
       }
-      return this.buckets[index][1];
+      return this.buckets[index][0][1];
     }
   
     retrieveAll() {
-      return this.buckets;
+      let allValues = [];
+      for (let i = 0; i < this.numBuckets; i++) {
+        if (this.buckets[i]) {
+          for (let j = 0; j < this.buckets[i].length; j++) {
+            allValues.push(this.buckets[i][j]);
+          }
+        }
+      }
+      return allValues;
     }
   
     delete(name) {
