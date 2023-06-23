@@ -8,8 +8,9 @@ An array allows duplicated values.
 
 let set1 = new Set();
 
-let array = [1, 2, 3, 4, 5];
+let array = [1, 1, 2, 3, 4, 5, 5, 5, 5, 6];
 let set2 = new Set(array);
+console.log(set2)
 
 
 let set = new Set();
